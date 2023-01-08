@@ -2,6 +2,8 @@ name: web
 channels:
   - defaults
 dependencies:
+  - python==3.8
+  - pip
   - pip:
     - beautifulsoup4==4.11.1
     - googletrans==3.1.0a0
