@@ -19,7 +19,7 @@ googletrans 3.1.0a0
 ```
 ### Usage
 #### Input variables  
-indir: the directory for the .xlsx for .csv file (default: '.'; the same directory to web_crawl_pubmed.py file)  
+indir: the directory for the .xlsx or .csv file (default: '.'; the same directory to web_crawl_pubmed.py file)  
 outdir: the directory to save the output file (default: './output')  
 ```{Plain Text}
 python web_crawl_pubmed.py --indir '.' --outdir './output'
