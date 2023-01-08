@@ -17,7 +17,7 @@ def summarize_pubmed(result, query, dest_lang='ko'):
     journal_name = result.select_one('meta[name="citation_publisher"]')['content']
     article_info = result.find("span", class_="cit").text.split(';')
     article_info = article_info[0].split(' ')[0]+';'+article_info[-1].split('.')[0]
-    try: article_type = soup.find("div", class_='publication-type').text
+    try: article_type = result.find("div", class_='publication-type').text
     except: article_type = "Original"
     pubmed_url = result.select_one('meta[name="citation_abstract_html_url"]')['content']
     abstract_eng = result.find("div", class_='abstract-content selected')
@@ -79,6 +79,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument('--indir', type=str, default='.')
     parser.add_argument('--outdir', type=str, default='./output')
+    parser.add_argument('--outname', type=str, default='final_result')
+    parser.add_argument('--abstract_filter', type=str, default='')
     args = parser.parse_args()
     
     # Read csv or xlxs file
@@ -95,6 +97,8 @@ if __name__ == "__main__":
     # Parallel search in the pubmed
     df = search_pubmed_parallel(df_input[0].values)
     df.drop_duplicates('검색어', keep='first', inplace=True)
+    # Filter the results
+    if args.abstract_filter!="": df = df[df['초록(영문)'].str.contains(args.abstract_filter)]
     # Save the results
     if not os.path.exists(args.outdir): os.makedirs(args.outdir)
-    df.to_csv(os.path.join(args.outdir,'final_result.csv'), index=False, encoding='utf-8-sig')
+    df.to_csv(os.path.join(args.outdir, args.outname+'.csv'), index=False, encoding='utf-8-sig')
