@@ -84,21 +84,20 @@ if __name__ == "__main__":
     args = parser.parse_args()
     
     # Read csv or xlxs file
-    read_file_name = [i for i in os.listdir(args.indir) if (i.endswith('.csv') or i.endswith('.xlsx'))]
+    read_file_list = [i for i in os.listdir(args.indir) if (i.endswith('.csv') or i.endswith('.xls') or i.endswith('.xlsx'))]
     # Check if there is appropriate file for analysis
-    if len(read_file_name)==0: raise ValueError(".csv or .xlsx not found in the given directory")
-    else: 
-        read_file_name = read_file_name[0]
-        print("Analyzing the first found csv/xlsx file: "+read_file_name)
-    # Read file
-    if read_file_name.endswith(".xlsx"): df_input = pd.read_excel(read_file_name, header=None)
-    else: df_input = pd.read_csv(read_file_name, header=None)
-    
-    # Parallel search in the pubmed
-    df = search_pubmed_parallel(df_input[0].values)
-    df.drop_duplicates('검색어', keep='first', inplace=True)
-    # Filter the results
-    if args.abstract_filter!="": df = df[df['초록(영문)'].str.contains(args.abstract_filter)]
-    # Save the results
-    if not os.path.exists(args.outdir): os.makedirs(args.outdir)
-    df.to_csv(os.path.join(args.outdir, args.outname+'.csv'), index=False, encoding='utf-8-sig')
+    if len(read_file_list)==0: raise ValueError(".csv, .xls, or .xlsx not found in the given directory")
+    for read_file in read_file_list:
+        print("Analyzing the csv/xls/xlsx file: "+read_file)
+        # Read file
+        if read_file.endswith(".xlsx"): df_input = pd.read_excel(read_file, header=None)
+        else: df_input = pd.read_csv(read_file, header=None)
+
+        # Parallel search in the pubmed
+        df = search_pubmed_parallel(df_input[0].values)
+        df.drop_duplicates('검색어', keep='first', inplace=True)
+        # Filter the results
+        if args.abstract_filter!="": df = df[df['초록(영문)'].str.contains(args.abstract_filter)]
+        # Save the results
+        if not os.path.exists(args.outdir): os.makedirs(args.outdir)
+        df.to_csv(os.path.join(args.outdir, args.outname+'_'+'.'.join(read_file.split('.')[:-1])+'.csv'), index=False, encoding='utf-8-sig')
