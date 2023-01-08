@@ -82,7 +82,8 @@ if __name__ == "__main__":
     parser.add_argument('--outname', type=str, default='final_result')
     parser.add_argument('--abstract_filter', type=str, default='')
     args = parser.parse_args()
-    
+    print(f"The provided inputs are {args.indir}, {args.outdir}, {args.outname}, and {args.abstract_filter}")
+        
     # Read csv or xlxs file
     read_file_list = [i for i in os.listdir(args.indir) if (i.endswith('.csv') or i.endswith('.xls') or i.endswith('.xlsx'))]
     # Check if there is appropriate file for analysis
@@ -90,8 +91,8 @@ if __name__ == "__main__":
     for read_file in read_file_list:
         print("Analyzing the csv/xls/xlsx file: "+read_file)
         # Read file
-        if read_file.endswith(".xlsx"): df_input = pd.read_excel(read_file, header=None)
-        else: df_input = pd.read_csv(read_file, header=None)
+        if read_file.endswith(".xlsx"): df_input = pd.read_excel(os.path.join(args.indir,read_file), header=None)
+        else: df_input = pd.read_csv(os.path.join(args.indir,read_file), header=None)
 
         # Parallel search in the pubmed
         df = search_pubmed_parallel(df_input[0].values)
@@ -101,3 +102,4 @@ if __name__ == "__main__":
         # Save the results
         if not os.path.exists(args.outdir): os.makedirs(args.outdir)
         df.to_csv(os.path.join(args.outdir, args.outname+'_'+'.'.join(read_file.split('.')[:-1])+'.csv'), index=False, encoding='utf-8-sig')
+    print("End of searching PubMed and extracting information")
