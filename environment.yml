@@ -1,0 +1,19 @@
+name: web
+channels:
+  - defaults
+dependencies:
+  - pip:
+    - beautifulsoup4==4.11.1
+    - googletrans==3.1.0a0
+    - lxml==4.9.2
+    - networkx==3.0
+    - numpy==1.24.1
+    - openpyxl==3.0.10
+    - pandas==1.5.2
+    - parmap==1.6.0
+    - ply==3.11
+    - pytest==7.2.0
+    - requests==2.28.1
+    - scipy==1.10.0
+    - tqdm==4.64.1
+prefix: /home/nmadmin/anaconda3/envs/web
