@@ -28,6 +28,6 @@ abstract_filter: select the articles that contain the given words (default: "")
 Example 1 (without filter and default name)
 python web_crawl_pubmed.py --indir '.' --outdir './output'
 
-Example 2 (apply filter to select articles with the word 'FDG' and change output file name to 'change_name.csv')
+Example 2 (apply filter to select articles with the word 'FDG' and change output file name starting with 'change_name')
 python web_crawl_pubmed.py --indir '.' --outdir './output' --outname 'change_name' --abstract_filter 'FDG'
 ```
