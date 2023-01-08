@@ -20,7 +20,13 @@ googletrans 3.1.0a0
 ### Usage
 #### Input variables  
 indir: the directory for the .xlsx or .csv file (default: '.'; the same directory to web_crawl_pubmed.py file)  
-outdir: the directory to save the output file (default: './output')  
+outdir: the directory to save the output file (default: './output') 
+outname: the output file name (default: 'final_output')
+abstract_filter: select the articles that contain the given words (default: "")
 ```{Plain Text}
+Example 1 (without filter and default name)
 python web_crawl_pubmed.py --indir '.' --outdir './output'
+
+Example 2 (apply filter to select articles with the word 'FDG' and change output file name to 'change_name.csv')
+python web_crawl_pubmed.py --indir '.' --outdir './output' --outname 'change_name' --abstract_filter 'FDG'
 ```
