@@ -19,7 +19,7 @@ googletrans 3.1.0a0
 ```
 ### Usage
 #### Using Python code for PubMed search  
-indir: the directory for .xlsx, .xls or .csv files (default: '.'; the same directory to web_crawl_pubmed.py file)  
+indir: the directory for .xlsx, .xls or .csv files that contains keyword in one column (default: '.'; the same directory to web_crawl_pubmed.py file)  
 --> All .xlsx/.xls/.csv files in the directories will be analysed one by one.  
 outdir: the directory to save the output file (default: './output')  
 outname: the output file name (default: 'final_output')  
@@ -37,7 +37,8 @@ python web_crawl_pubmed_input.py
 #### Using exe file for PubMed search
 Please download file: [web_crawl_pubmed.exe](https://github.com/bsungwoo/pubmed_search/releases/download/v1.0.0/web_crawl_pubmed.exe)  
 The command window appears when clicking the exe file.  
-The below image is the example for inputs and execution results for the exe file.  
+The below image is the example for inputs (same as above python code usage) and execution results for the exe file. 
+![image](https://user-images.githubusercontent.com/61150422/211229602-8d68ccb6-4b9d-4eaf-b8f9-37cd7cf150ea.png)
 ![image](https://user-images.githubusercontent.com/61150422/211228253-459dfae7-7ada-4b50-b8ea-64065b0eee09.png)  
 The below image is the output example.
 ![image](https://user-images.githubusercontent.com/61150422/211229344-21a26639-626a-4150-b5cf-a890296e0d51.png)
