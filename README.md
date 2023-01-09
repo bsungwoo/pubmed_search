@@ -39,3 +39,5 @@ Please download file: [web_crawl_pubmed.exe](https://github.com/bsungwoo/pubmed_
 The command window appears when clicking the exe file.  
 The below image is the example for inputs and execution results for the exe file.  
 ![image](https://user-images.githubusercontent.com/61150422/211228253-459dfae7-7ada-4b50-b8ea-64065b0eee09.png)  
+The below image is the output example.
+![image](https://user-images.githubusercontent.com/61150422/211229344-21a26639-626a-4150-b5cf-a890296e0d51.png)
